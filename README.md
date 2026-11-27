@@ -8,7 +8,8 @@ simulations for championship odds, and car-adjusted driver ratings.
 > (a random-forest regression of finishing position on 2014–2022 data,
 > kept in [`legacy/`](legacy/)). It is being rebuilt around fresher data,
 > a proper evaluation setup and stronger models. Step 1, the data
-> pipeline, is done; see the [data audit](reports/data_audit.md).
+> pipeline, is done; see the [data audit](reports/data_audit.md) and the
+> [project journal](docs/journal/), which explains each design decision.
 
 ## Roadmap
 
