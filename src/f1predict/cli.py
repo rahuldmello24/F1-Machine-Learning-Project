@@ -4,6 +4,7 @@
     f1predict pull openf1 [--years 2025 2026]
     f1predict pull fastf1               # needs F1 TV credentials, see README
     f1predict audit                     # writes reports/data_audit.md
+    f1predict backtest                  # writes reports/backtest.md
 """
 
 from __future__ import annotations
@@ -24,6 +25,10 @@ def main(argv: list[str] | None = None) -> None:
     pull.add_argument("--no-fetch", action="store_true", help="only rebuild parquet from the local cache")
 
     sub.add_parser("audit", help="write reports/data_audit.md")
+
+    bt = sub.add_parser("backtest", help="walk-forward backtest, writes reports/backtest.md")
+    bt.add_argument("--seasons", type=int, nargs="*")
+    bt.add_argument("--sims", type=int, default=20_000)
 
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
@@ -51,6 +56,11 @@ def main(argv: list[str] | None = None) -> None:
 
         write_report()
         print("wrote reports/data_audit.md")
+    elif args.cmd == "backtest":
+        from f1predict.evaluation import report
+
+        report.run(seasons=args.seasons or report.TEST_SEASONS, n_sims=args.sims)
+        print("wrote reports/backtest.md")
 
 
 if __name__ == "__main__":
