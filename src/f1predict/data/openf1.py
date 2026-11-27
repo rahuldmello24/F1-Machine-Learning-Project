@@ -95,7 +95,7 @@ def _load_endpoint(endpoint: str, meta: pd.DataFrame) -> pd.DataFrame:
         if p.exists():
             d = _read(p)
             if d:
-                frames.append(pd.DataFrame(d))
+                frames.append(pd.DataFrame(d).dropna(axis=1, how="all"))
     if not frames:
         return pd.DataFrame()
     df = pd.concat(frames, ignore_index=True)

@@ -7,7 +7,7 @@ _Generated 2026-11-27 by `f1predict audit`._
 | source | years | status | what |
 |---|---|---|---|
 | Jolpica-F1 (dump + API top-up) | 1950–2026 | ✅ pulled | results, sprints, qualifying, laps (1996+), pit stops (2011+), standings |
-| OpenF1 | 2023– | ⏳ not pulled | every lap incl. practice, sectors, speed traps, tyre stints, weather, pit lane, race control |
+| OpenF1 | 2023– | ✅ pulled | every lap incl. practice, sectors, speed traps, tyre stints, weather, pit lane, race control |
 | FastF1 / F1 live timing | 2018– | 🔒 needs F1 TV sign-in | the same lap data for 2018–2022 + high-rate telemetry |
 
 Latest race in the data: **Las Vegas Grand Prix 2026** (round 21, 2026-11-22).
@@ -57,7 +57,7 @@ Share of races that have each kind of data.
 | 2025 | 24 | 20.0 | 96% | 100% | 100% | 6 |
 | 2026 | 21 | 22.0 | 100% | 100% | 100% | 6 |
 
-**Takeaways:** results go back to 1950; qualifying lap times are complete from the mid-90s; lap-by-lap race data from 1996; pit stops from 2011. Pre-1996 data supports ratings (who beat whom) but not pace features.
+**Takeaways:** results (incl. grid) go back to 1950; qualifying lap times exist for 1994–95 and are complete from 2003, but Jolpica is missing most 1996–2002 qualifying sessions; lap-by-lap race data from 1996; pit stops from 2011. Pre-1996 data supports ratings (who beat whom) but not pace features.
 
 ## Race outcomes: the DNF problem
 
@@ -161,8 +161,32 @@ Most processional:
 
 ## OpenF1 (2023+)
 
-Not pulled yet. Run `f1predict pull openf1`.
+Sessions per season:
 
+| year | TEST | FP1 | FP2 | FP3 | SQ | SR | Q | R |
+|---|---|---|---|---|---|---|---|---|
+| 2023 | 3 | 22 | 16 | 16 | 6 | 6 | 22 | 22 |
+| 2024 | 3 | 24 | 18 | 18 | 6 | 6 | 24 | 24 |
+| 2025 | 3 | 24 | 18 | 18 | 6 | 6 | 24 | 24 |
+| 2026 | 6 | 21 | 15 | 15 | 6 | 6 | 21 | 21 |
+
+Laps per season and session:
+
+| year | TEST | FP1 | FP2 | FP3 | SQ | SR | Q | R |
+|---|---|---|---|---|---|---|---|---|
+| 2023 | 3992 | 9133 | 8294 | 6085 | 1464 | 2181 | 7423 | 24479 |
+| 2024 | 3698 | 10931 | 8871 | 6294 | 1355 | 2423 | 7598 | 26629 |
+| 2025 | 3876 | 12070 | 9062 | 6895 | 1369 | 2163 | 7129 | 26265 |
+| 2026 | 7158 | 11260 | 8515 | 6469 | 1571 | 2469 | 7097 | 24615 |
+
+| check | value |
+|---|---|
+| sessions matched to a Jolpica round | 100% |
+| laps total / practice laps | 268,833 / 103,879 |
+| laps with a lap time | 96% |
+| laps matched to a Jolpica driver | 99% |
+| tyre stints with compound | 100% |
+| sessions with weather | 100% |
 
 ## FastF1 / F1 live timing
 
@@ -172,6 +196,7 @@ Since mid-October 2026 F1's timing archive requires an F1 TV sign-in. Not pulled
 ## Known quirks
 
 - 89 duplicate driver/race result rows, all 1950–1964: shared drives (one driver, two cars). Kept as-is.
-- The 2026 calendar has a cancelled Saudi Arabian GP and a *Bahrain Grand Prix in Malaysia* (round 16); circuit-level features must key on the **circuit**, not the event name.
+- The 2026 calendar has a cancelled Saudi Arabian GP and a *Bahrain Grand Prix in Malaysia* (round 16, held at Sepang); circuit-level features must key on the **circuit**, not the event name.
 - Jolpica's API (used for rounds newer than the dump) has no sprint-qualifying results; the next dump fills them in.
+- 2025 round 6 has no qualifying lap times in the dump (grid is present).
 - Pre-1996 laps are only the fastest lap per driver, not full lap charts.

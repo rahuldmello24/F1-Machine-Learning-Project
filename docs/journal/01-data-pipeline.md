@@ -152,6 +152,20 @@ per-race grid-vs-finish correlation is ~0.6; pole has won **71%** of
 order most; Suzuka, Miami and Jeddah are the most processional. That
 becomes a feature.
 
+**OpenF1 is complete for 2023–2026.** 470 sessions across 91 weekends
+(including 15 pre-season testing days), **268,833 laps**, of which
+~104,000 are practice and ~19,000 testing. Every session matched a
+Jolpica round, 99% of laps matched a Jolpica driver (the rest are
+reserve drivers in testing/FP1), 96% of laps have a lap time (the rest
+are in/out laps or laps under red flags), and every tyre stint has a
+compound. This is the raw material for practice long-run pace and tyre
+degradation features in step 3.
+
+The download took ~80 minutes because OpenF1 limits requests to roughly
+30 a minute. The polite HTTP client waited and retried through 89
+rate-limit responses and a few dropped connections without losing any
+data, which is exactly why it was built that way.
+
 **Quirks found and handled:** 1950s shared drives (one driver in two
 cars, kept); a 2026 "Bahrain GP" held at Sepang (so circuit features key
 on the *circuit*, not the event name); one 2025 race with no qualifying
