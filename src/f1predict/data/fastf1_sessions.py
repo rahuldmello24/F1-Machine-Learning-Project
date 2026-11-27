@@ -1,10 +1,11 @@
-"""FastF1 session data for the seasons OpenF1 doesn't cover.
+"""FastF1 session data for the seasons OpenF1 doesn't cover (2018–2022).
 
-Since October 2026 F1's own timing archive (livetiming.formula1.com)
-needs an F1 TV sign-in. FastF1 falls back to a community mirror, which
-currently serves **2021 and 2022** without authentication. Together with
-OpenF1 (2023+) that gives lap-level practice/qualifying/race data from
-2021 onwards, spanning the 2022 and 2026 regulation resets.
+Since October 2026 F1's timing archive (livetiming.formula1.com) needs an
+F1 TV Access sign-in. FastF1 3.9+ signs in with your own account: set
+``F1_USERNAME`` and ``F1_PASSWORD`` in your shell (never commit them),
+or run interactively and FastF1 will prompt. Tokens last about four
+days, so this is meant to be run occasionally on your own machine; the
+resulting parquet files are all the rest of the pipeline needs.
 
 Per session we keep the lap table (lap and sector times, tyre compound
 and age, stint, pit in/out, track status, deleted laps) and weather.
@@ -22,7 +23,7 @@ from f1predict.paths import FASTF1_CACHE, FASTF1_OUT, ensure
 
 log = logging.getLogger(__name__)
 
-YEARS = (2021, 2022)
+YEARS = (2018, 2019, 2020, 2021, 2022)
 SESSIONS = {
     "Practice 1": "FP1",
     "Practice 2": "FP2",

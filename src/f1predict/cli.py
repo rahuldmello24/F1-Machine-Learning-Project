@@ -41,11 +41,11 @@ def main(argv: list[str] | None = None) -> None:
                 openf1.fetch(args.years)
             openf1.tidy(jolpica.load("rounds"), jolpica.load("results"))
         elif args.source == "fastf1":
-            from f1predict.data import fastf1_mirror
+            from f1predict.data import fastf1_sessions
 
             if not args.no_fetch:
-                fastf1_mirror.fetch(tuple(args.years) if args.years else fastf1_mirror.YEARS)
-            fastf1_mirror.tidy(jolpica.load("results"))
+                fastf1_sessions.fetch(tuple(args.years) if args.years else fastf1_sessions.YEARS)
+            fastf1_sessions.tidy(jolpica.load("results"))
     elif args.cmd == "audit":
         from f1predict.audit import write_report
 

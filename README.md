@@ -36,7 +36,7 @@ simulations for championship odds, and car-adjusted driver ratings.
 |---|---|---|
 | [Jolpica-F1](https://github.com/jolpica/jolpica-f1) (Ergast successor) | 1950 to now | results, sprints, qualifying, lap charts (1996+), pit stops (2011+), standings |
 | [OpenF1](https://openf1.org) | 2023 to now | every lap incl. practice and testing, sector times, speed traps, tyre stints, weather, race control |
-| [FastF1](https://docs.fastf1.dev) (optional) | 2018 to now | same lap data before 2023; since Oct 2026 needs an F1 TV sign-in |
+| [FastF1](https://docs.fastf1.dev) (optional) | 2018 to now | same lap data for 2018–2022; since Oct 2026 needs your own F1 TV sign-in |
 
 ## Quick start
 
@@ -57,7 +57,7 @@ tables in `data/processed/{jolpica,openf1}/*.parquet`.
 src/f1predict/
   data/jolpica.py        dump download, tidy tables, API top-up for new races
   data/openf1.py         cached per-session fetch, joined to Jolpica keys
-  data/fastf1_mirror.py  optional FastF1 loader
+  data/fastf1_sessions.py  optional FastF1 loader (uses your F1 TV sign-in)
   eras.py                technical-regulation eras and resets
   teams.py               team lineages (Toro Rosso → AlphaTauri → RB, ...)
   audit.py               data coverage and quality report
