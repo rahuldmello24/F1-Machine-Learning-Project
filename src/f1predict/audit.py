@@ -130,7 +130,7 @@ def openf1_summary() -> tuple[pd.DataFrame, dict] | None:
     laps = pd.read_parquet(OPENF1_OUT / "laps.parquet") if (OPENF1_OUT / "laps.parquet").exists() else pd.DataFrame()
     stints = pd.read_parquet(OPENF1_OUT / "stints.parquet") if (OPENF1_OUT / "stints.parquet").exists() else pd.DataFrame()
     weather = pd.read_parquet(OPENF1_OUT / "weather.parquet") if (OPENF1_OUT / "weather.parquet").exists() else pd.DataFrame()
-    order = ["FP1", "FP2", "FP3", "SQ", "SR", "Q", "R"]
+    order = ["TEST", "FP1", "FP2", "FP3", "SQ", "SR", "Q", "R"]
     sess = s.pivot_table(index="year", columns="session", values="session_key", aggfunc="nunique").reindex(columns=order).fillna(0).astype(int)
     lap_counts = laps.groupby(["year", "session"]).size().unstack().reindex(columns=order).fillna(0).astype(int) if len(laps) else None
     stats = {
