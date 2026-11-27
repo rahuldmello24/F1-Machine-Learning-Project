@@ -1,5 +1,5 @@
 # Downloaded and derived data is rebuilt by `f1predict pull ...`
-data/
+/data/
 .fastf1-cache/
 
 __pycache__/
